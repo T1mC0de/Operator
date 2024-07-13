@@ -1,0 +1,39 @@
+<FirstWindow>:
+    name: "first"     
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "../Operator_KHL/Images/screen_1.png"
+    BoxLayout:
+        orientation: 'horizontal'
+        BoxLayout:
+            size_hint: 0.5, 1
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 0.5, 1
+            BoxLayout:
+                Label:
+                    text:"Welcome to\n operatorskay"
+                    font_name: "Fonts/nhl-nashville.ttf"
+                    color: (40/255, 40/255, 40/255, 1)
+                    font_size: self.width/8
+                    pos_hint: {'top': 1.0}
+            BoxLayout:
+                orientation: 'horizontal'
+                BoxLayout:
+                    size_hint: 0.7, 1
+                BoxLayout:
+                    Button:
+                        id: butt
+                        text: "Create match"
+                        font_name: "Fonts/nhl-nashville.ttf"
+                        font_size: self.width/13
+                        color: 40/255,40/255,40/255,1
+                        size_hint: .1, .1
+                        pos_hint: {'y':.35, 'x': .5}
+                        background_color: 1, 1, 1, 0
+                        on_release: app.root.current = "second"
+                BoxLayout:
+                    size_hint: 0.3, 1
+                

@@ -1,0 +1,37 @@
+WindowManager:
+    FirstWindow:
+        Image:
+            id: cursor_first
+            source: '../Operator_KHL/Images/cursor.png'
+            size_hint: .085, .085
+    SecondWindow:
+        Image:
+            id: cursor_second
+            source: '../Operator_KHL/Images/cursor.png'
+            size_hint: .085, .085
+    ThirdWindow:
+        Image:
+            id: cursor_third
+            source: '../Operator_KHL/Images/cursor.png'
+            size_hint: .085, .085
+    
+    
+# Сделали чтобы для любого виджета можно было
+# настротить задний фон
+
+<BackgroundColor@Widget>
+    background_color: 1, 0, 0, 1
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+# сделал новый метод Label но с настраиваемым задником
+# по дефолту установили (0, 0, 0, 0) - фулл черный
+<BackgroundLabel@Label+BackgroundColor>
+    background_color: 0, 0, 0, 0
+
+    
+ 

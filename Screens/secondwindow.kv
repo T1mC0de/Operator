@@ -1,0 +1,165 @@
+<SecondWindow>:
+    id: second_scr
+    name: "second"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "../Operator_KHL/Images/screen_2.png"    
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 15
+        spacing: 20 
+
+        # BoxLayout отвечающий за первую команду
+        BoxLayout:
+            orientation: 'vertical'
+            BackgroundLabel:
+                id: name_team1
+                text: "Severstal"
+                font_name: "Fonts/nhl-nashville.ttf"
+                font_size: self.width/15
+                color: 40/255, 40/255, 40/255, 1
+                background_color: 1, 1, 1, 0
+                size_hint: 1, 0.08
+                pos_hint: {'x': -.05}
+            
+            Image:
+                id: logo_team1
+                size_hint: 1, 0.55 
+                source: "../Operator_KHL/Images/logo_sev.png"
+                size_hint: 1, 0.2
+                pos_hint: {'x': -.04}
+            
+            BoxLayout:
+                background_color: 1, 1, 1, 1
+                size_hint: 1, 0.4
+                orientation: 'vertical'
+                BoxLayout:
+                    spacing: 150
+                    Button:
+                        text: "<"
+                        font_size: 20
+                        color: 40/255, 40/255, 40/255, 1
+                        size_hint: 0.3, 0.3
+                        pos_hint: {'top': 1}
+                        background_color: 1, 1, 1, 0
+                        on_press: root.on_button_left_choosing_left_team()
+
+                    Button:
+                        text: ">"
+                        font_size: 20
+                        color: 40/255,40/255,40/255,1
+                        size_hint: 0.3, 0.3
+                        pos_hint: {'top': 1}
+                        background_color: 1, 1, 1, 0
+                        on_press: root.on_button_right_choosing_left_team()
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        Button:
+                            text: "Set_1"
+                            size_hint: 1, 1
+                        Button:
+                            text: "Set_2"
+                            size_hint: 1, 1
+                    BoxLayout:
+                        orientation: 'vertical'
+                        Button:
+                            text: "Set_3"
+                            size_hint: 1, 1
+                        Button:
+                            text: "Set_4"
+                            size_hint: 1, 1
+                    
+
+        #Блок, отвечающий за настройки матча
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'vertical'
+                BackgroundLabel:
+                    id: settings_match
+                    text: "Match Settings"
+                    font_name: "Fonts/nhl-nashville.ttf"
+                    font_size: self.width/15
+                    color: 40/255,40/255,40/255,1
+                    background_color: 1, 1, 1, 0
+                    size_hint: 1, 0.07
+                BoxLayout:
+                    size_hint: 1, 0.93
+            Button:
+                text: "Start Match"
+                font_name: "Fonts/nhl-nashville.ttf"
+                font_size: self.width/18
+                color: 40/255,40/255,40/255,1
+                background_color: 1, 1, 1, 0
+                size_hint: 1, 0.091
+                on_press: 
+                    root.on_button_start()
+                    app.root.current = "third"
+
+        # BoxLayout отвечающий за вторую
+        BoxLayout:
+            orientation: 'vertical'
+
+            BackgroundLabel:
+                id: name_team2
+                text: "Spartak"
+                font_name: "Fonts/nhl-nashville.ttf"
+                font_size: self.width/15
+                color: 40/255,40/255,40/255,1
+                background_color: 1, 1, 1, 0
+                size_hint: 1, 0.08
+                pos_hint: {'x': .05} 
+
+            Image:
+                id: logo_team2
+                size_hint: 1, 0.55 
+                source: "../Operator_KHL/Images/logo_spk.png"
+                size_hint: 1, 0.2
+                pos_hint: {'x': .04}
+            
+            BoxLayout:
+                background_color: 1, 1, 1, 1
+                size_hint: 1, 0.4
+                orientation: 'vertical'
+                BoxLayout:
+                    spacing: 150
+                    Button:
+                        text: "<"
+                        font_size: 20
+                        color: 40/255, 40/255, 40/255, 1
+                        size_hint: 0.3, 0.3
+                        pos_hint: {'top': 1}
+                        background_color: 1,1,1,0
+                        on_press: root.on_button_left_choosing_right_team()
+                    Button:
+                        text: ">"
+                        font_size: 20
+                        color: 40/255, 40/255, 40/255, 1
+                        size_hint: 0.3, 0.3
+                        pos_hint: {'top': 1}
+                        background_color: 1,1,1,0
+                        on_press: root.on_button_right_choosing_right_team()
+                        
+                BoxLayout:
+                    orientation: 'horizontal'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        Button:
+                            text: "Set_1"
+                            size_hint: 1, 1
+                        Button:
+                            text: "Set_2"
+                            size_hint: 1, 1
+                    BoxLayout:
+                        orientation: 'vertical'
+                        Button:
+                            text: "Set_3"
+                            size_hint: 1, 1
+                        Button:
+                            text: "Set_4"
+                            size_hint: 1, 1
