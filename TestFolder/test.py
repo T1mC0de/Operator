@@ -15,7 +15,12 @@ class Screen2(Screen):
 
 
 class Select_text(App):
-    pass
+    def build(self):
+        sm = ScreenManager(transition=FadeTransition())
+        sm.add_widget(Screen1(name = "scr1"))
+        sm.add_widget(Screen2(name = "scr2"))
+        
+        return sm
 
 app = Select_text()
 app.run()

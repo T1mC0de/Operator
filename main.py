@@ -28,19 +28,19 @@ Window.clearcolor = (209/255, 209/255, 209/255, 1)
 #Удаляет базовый курсор, он работает, но его не видно
 Window.show_cursor = False
 
-
+#Курсор и его красивый класс
 class WindowManager(ScreenManager):
     def __init__(self, **kwargs):
         super(WindowManager, self).__init__(**kwargs)
         Clock.schedule_interval(self.cursorPosition, 1/60)
     
     def cursorPosition(self, *args):
-        self.ids.cursor_first.pos = Window.mouse_pos[0] - self.ids.cursor_first.width/2.15, \
-                              Window.mouse_pos[1] - self.ids.cursor_first.height/1.5
-        self.ids.cursor_second.pos = Window.mouse_pos[0] - self.ids.cursor_second.width/2.15, \
-                              Window.mouse_pos[1] - self.ids.cursor_second.height/1.5
-        self.ids.cursor_third.pos = Window.mouse_pos[0] - self.ids.cursor_third.width/2.15, \
-                              Window.mouse_pos[1] - self.ids.cursor_third.height/1.5
+        self.ids.cursor_first.pos = Window.mouse_pos[0] - self.ids.cursor_first.width/2, \
+                              Window.mouse_pos[1] - self.ids.cursor_first.height/2
+        self.ids.cursor_second.pos = Window.mouse_pos[0] - self.ids.cursor_second.width/2, \
+                              Window.mouse_pos[1] - self.ids.cursor_second.height/2
+        self.ids.cursor_third.pos = Window.mouse_pos[0] - self.ids.cursor_third.width/2, \
+                              Window.mouse_pos[1] - self.ids.cursor_third.height/2
         
         
 

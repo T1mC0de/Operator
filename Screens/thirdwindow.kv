@@ -12,85 +12,152 @@
             BoxLayout:
                 size_hint: 1, .4
                 orientation: 'horizontal'
-                Image:
-                    source: "../Operator_KHL/Images/logo_sev.png"
-                BackgroundLabel:
-                    id: score_first_team
-                    text: "0"
-                    font_name: "Fonts/nhl-nashville.ttf"
-                    font_size: self.width/3
-                    color: (0, 0, 0, 1)
+                BoxLayout:
+                    orientation: 'horizontal'
+                    BoxLayout:
+                        orientation: 'vertical'
+                        BoxLayout:
+                            size_hint: 1, .15
+                        Image:
+                            size_hint: .9, .85
+                            source: "../Operator_KHL/Images/logo_sev.png"
+                    BoxLayout:
+                        size_hint: .1, 1
             BackgroundLabel:
                 text: "SEVERSTAL"
                 size_hint: 1, .1
+                pos_hint: {'x': -.02}
                 font_name: "Fonts/nhl-nashville.ttf"
                 font_size: self.width/15
                 color: (0, 0, 0, 1)
-            Button:
-                id: goal_left_team
-                text: "GOAL"
-                size_hint: 1, .25
-                font_name: "Fonts/nhl-nashville.ttf"
-                font_size: self.width/10
-                color: (0, 0, 0, 1)
-                on_press:
-                    root.goal_first_team()
-                    root.pause()
-            Button:
-                text: "BACK"
-                size_hint: 1, .25
-                font_name: "Fonts/nhl-nashville.ttf"
-                font_size: self.width/10
-                color: (0, 0, 0, 1)
-                on_press: app.root.current = "second"
+            BoxLayout:
+                size_hint: 1, .55
+                orientation: 'horizontal'
+                BoxLayout:
+                    size_hint: .1, 1
+                BoxLayout:
+                    size_hint: .8, 1
+                    orientation: 'vertical'
+                    Button:
+                        id: goal_left_team
+                        text: "GOAL"
+                        size_hint: 1, .4
+                        font_name: "Fonts/nhl-nashville.ttf"
+                        font_size: self.width/10
+                        on_press:
+                            root.goal_first_team()
+                            root.pause()
+                    BoxLayout:
+                        size_hint: 1, .5
+                    Button:
+                        text: "BACK"
+                        size_hint: 1, .1
+                        font_name: "Fonts/nhl-nashville.ttf"
+                        font_size: self.width/15
+                        on_press: app.root.current = "second"
+                BoxLayout:
+                    size_hint: .1, 1
         BoxLayout:
             orientation: 'vertical'
             BoxLayout:
                 orientation: 'vertical'
-                Label:
-                    text: "1'st period"
-                    font_size: self.width/10
-                Label:
-                    id: time_widget
-                    text: "20:00"
-                    color: (0, 0, 0)
-                    font_size: 40
-                    font_size: self.width/10
-                Label:
-                    text: "05' Grishin 13"                    
-                    font_size: self.width/10
+                BoxLayout:
+                    size_hint: 1, .1
+                BoxLayout:
+                    size_hint: 1, .9
+                    orientation: 'horizontal'
+                    BoxLayout:
+                        size_hint: .25, 1
+                        BackgroundLabel:
+                            id: score_first_team
+                            text: "0"
+                            font_name: "Fonts/nhl-nashville.ttf"
+                            font_size: self.width/1.25
+                            color: (0, 0, 0, 1)
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint: .5, 1
+                        Label:
+                            size_hint: 1,.25
+                        Label:
+                            id: time_widget
+                            text: "20:00"
+                            font_name: "Fonts/nhl-nashville.ttf"
+                            color: (0, 0, 0)
+                            font_size: 40
+                            font_size: self.width/7
+                            size_hint: 1,.1
+                        Label:
+                            text: "1'st period"
+                            font_size: self.width/10
+                            color: (0, 0, 0) 
+                            size_hint: 1,.1 
+                        Label:
+                            size_hint: 1,.1
+                        Label:
+                            text: "last goal"
+                            font_name: "Fonts/nhl-nashville.ttf"                    
+                            font_size: self.width/10
+                            color: (0, 0, 0)  
+                            size_hint: 1,.1                    
+                        Label:
+                            text: "05' Grishin 13"                    
+                            font_size: self.width/10
+                            color: (0, 0, 0)
+                            size_hint: 1,.1
+                        Label:
+                            size_hint: 1,.25
+                    BoxLayout:
+                        size_hint: .25, 1
+                        BackgroundLabel:
+                            id: score_second_team
+                            text: "0"
+                            font_name: "Fonts/nhl-nashville.ttf"
+                            font_size: self.width/1.25
+                            color: (0, 0, 0, 1)
             BoxLayout:
                 orientation: 'vertical'
+                size_hint: 1, 1.15
                 BoxLayout:
                     size_hint: 1, .7
                     orientation: 'horizontal'
                     BoxLayout:
                         orientation: 'vertical'
-                        BoxLayout:
-                            size_hint: 1, .4
-                            BackgroundLabel:
-                                background_color: 1, .5, 1, .5                               
+                        Button:
+                            size_hint: 1, .4  
+                            text: "None"
+                            font_name: "Fonts/nhl-nashville.ttf"
+                            font_size: self.width/13
                         Button:
                             text: "Coach Request"
                             size_hint: 1, .3
+                            font_name: "Fonts/nhl-nashville.ttf"
+                            font_size: self.width/13
                     BoxLayout:
                         orientation: 'vertical'
-                        BoxLayout:
+                        Button:
                             size_hint: 1, .4
-                            BackgroundLabel:
-                                background_color: 1, 0, 1, .5
+                            text: "None"
+                            font_name: "Fonts/nhl-nashville.ttf"
+                            font_size: self.width/13
                         Button:
                             text: "Coach Request"
                             size_hint: 1, .3
+                            font_name: "Fonts/nhl-nashville.ttf"
+                            font_size: self.width/13
                 BoxLayout:
                     size_hint: 1, .3
                     orientation: 'horizontal'
                     Button:
                         text: "TIMEOUT"
                         size_hint: .25, 1
+                        font_name: "Fonts/nhl-nashville.ttf"
+                        font_size: self.width/10
                     Button:
                         id: pause_button
                         text: "START"
+                        font_name: "Fonts/nhl-nashville.ttf"
+                        font_size: self.width/10
                         size_hint: .5, 1
                         background_color: 0/255, 255/255, 0/255, 1
                         on_press: 
@@ -100,44 +167,53 @@
                     Button:
                         text: "TIMEOUT"
                         size_hint: .25, 1
+                        font_name: "Fonts/nhl-nashville.ttf"
+                        font_size: self.width/10
                 
         BoxLayout:
             orientation: 'vertical'
             BoxLayout:
                 size_hint: 1, .4
                 orientation: 'horizontal'
-                BackgroundLabel:
-                    id: score_second_team
-                    text: "0"
-                    font_name: "Fonts/nhl-nashville.ttf"
-                    font_size: self.width/3
-                    color: (0, 0, 0, 1)
-                Image:
-                    source: "../Operator_KHL/Images/logo_spk.png"
+                BoxLayout:
+                    orientation: 'horizontal'
+                    BoxLayout:
+                        size_hint: .3, 1
+                    BoxLayout:
+                        orientation: 'vertical'
+                        BoxLayout:
+                            size_hint: 1, .15
+                        Image:
+                            size_hint: .9, .85
+                            source: "../Operator_KHL/Images/logo_spk.png"
             BackgroundLabel:
                 text: "SPARTAK"
                 size_hint: 1, .1
+                pos_hint: {'x': .02}
                 font_name: "Fonts/nhl-nashville.ttf"
                 font_size: self.width/15
                 color: (0, 0, 0, 1)
-            Button:
-                text: "GOAL"
-                id: goal_right_team
-                size_hint: 1, .25
-                font_name: "Fonts/nhl-nashville.ttf"
-                font_size: self.width/10
-                color: (0, 0, 0, 1)
-                on_press:
-                    root.goal_second_team()
-                    root.pause()
-            Button:
-                text: "BACK"
-                font_size: 60
-                size_hint: 1, .25
-                font_name: "Fonts/nhl-nashville.ttf"
-                font_size: self.width/10
-                color: (0, 0, 0, 1)
-                on_press: app.root.current = "second"
+            BoxLayout:
+                size_hint: 1, .55
+                orientation: 'horizontal'
+                BoxLayout:
+                    size_hint: .1, 1
+                BoxLayout:
+                    size_hint: .8, 1
+                    orientation: 'vertical'
+                    Button:
+                        text: "GOAL"
+                        id: goal_right_team
+                        size_hint: 1, .4
+                        font_name: "Fonts/nhl-nashville.ttf"
+                        font_size: self.width/10
+                        on_press:
+                            root.goal_second_team()
+                            root.pause()
+                    BoxLayout:
+                        size_hint: 1, .6
+                BoxLayout:
+                    size_hint: .1, 1
 
     # этот Label оставь закоменченым, он мне нужен как прототип 
     # переноса данных со второго экрана на третий

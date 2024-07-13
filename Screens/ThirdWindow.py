@@ -4,10 +4,10 @@ from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
 from Team import Teams
 
-class Turn_Sound():
-    def activate_sirena_sound():
-        SoundLoader.load("../Operator_KHL/Sound/sirena_nhl.mp3").play
-        print(1)
+#class Turn_Sound():
+    #def activate_sirena_sound():
+        #SoundLoader.load("../Operator_KHL/Sound/sirena_nhl.mp3").play
+        #print(1)
 
 class ThirdWindow(Screen):
     def __init__(self, **kw):
@@ -69,7 +69,7 @@ class ThirdWindow(Screen):
     
     def goal_first_team(self):
         self.ids.score_first_team.text = str(int(self.ids.score_first_team.text) + 1)
-        Turn_Sound.activate_sirena_sound()
+        #Turn_Sound.activate_sirena_sound()
     
 
     def goal_second_team(self):
