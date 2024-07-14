@@ -10,7 +10,7 @@ class Turn_Sound:
 
     def activate_sirena_sound(self):
         if self.siren:
-            self.siren.volume = 0.05
+            self.siren.volume = 0.5
             self.siren.play()
 
 
