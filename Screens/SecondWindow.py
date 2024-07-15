@@ -38,6 +38,5 @@ class SecondWindow(Screen):
     # со второго на третий экран
     def on_button_start(self):
         #self.manager.get_screen('third').ids.first_team.text = Teams.Teams_list[Teams.index_first_team].name
-        self.manager.get_screen('third').ids.time_widget.text = "01:05"
         self.manager.get_screen('third').ids.goal_left_team.disabled = 1
         self.manager.get_screen('third').ids.goal_right_team.disabled = 1

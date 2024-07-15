@@ -21,6 +21,8 @@ class ThirdWindow(Screen):
         self.are_on_pause = 1
         self.disable_goal_button = 1
         self.sound = Turn_Sound()
+        self.periods = 1
+        self.period_time = "00:05"
 
     def print_time(self):
         self.time_min = str(self.time_min)
@@ -42,37 +44,25 @@ class ThirdWindow(Screen):
             self.time_min -= 1
             self.time_sec = 59
         else:
-            self.ids.time_widget.color = "red"
-            self.ids.time_widget.text = "TIME IS OVER"
+            self.pause()
+            self.change_period()
             self.ev.cancel()
-    
-    def start_time(self, *args):
-        if self.did_start:
-            return
-        self.did_start = True
-        self.are_on_pause = (self.are_on_pause + 1) % 2
-        self.time_min = int(self.ids.time_widget.text.split(':')[0])
-        self.time_sec = int(self.ids.time_widget.text.split(':')[1])
-        self.ev = Clock.schedule_once(self.countdown)
-        self.ev = Clock.schedule_interval(self.countdown, 1)
-    
-    def change_name_pause(self):
-        self.ids.pause_button.text = "PAUSE"
     
     def pause(self):
         self.disable_goal_button = (self.disable_goal_button + 1) % 2
         self.ids.goal_left_team.disabled = self.disable_goal_button
         self.ids.goal_right_team.disabled = self.disable_goal_button
-        if self.did_start:
-            if self.are_on_pause == 0:
-                self.ids.pause_button.text = "START"
-                self.ev.cancel()
-            else:
-                self.ids.pause_button.text = "PAUSE"
-                self.ev = Clock.schedule_interval(self.countdown, 1)
-            self.are_on_pause = (self.are_on_pause + 1) % 2
+        if self.are_on_pause == 0:
+            self.ids.pause_button.text = "START"
+            self.ev.cancel()
+        else:
+            self.time_min = int(self.ids.time_widget.text.split(':')[0])
+            self.time_sec = int(self.ids.time_widget.text.split(':')[1])
+            self.ids.pause_button.text = "PAUSE"
+            self.ev = Clock.schedule_once(self.countdown)
+            self.ev = Clock.schedule_interval(self.countdown, 1)
+        self.are_on_pause = (self.are_on_pause + 1) % 2
 
-    
     def goal_first_team(self):
         self.ids.score_first_team.text = str(int(self.ids.score_first_team.text) + 1)
         self.sound.activate_sirena_sound()
@@ -81,5 +71,16 @@ class ThirdWindow(Screen):
     def goal_second_team(self):
         self.ids.score_second_team.text = str(int(self.ids.score_second_team.text) + 1)
         self.sound.activate_sirena_sound()
+
+    def change_period(self):
+        if self.periods == 3:
+            pass
+        elif self.periods == 1:
+            self.ids.period.text = "2'nd period"
+        elif self.periods == 2:
+            self.ids.period.text = "3'd period"
+        self.periods += 1
+        self.ids.time_widget.text = self.period_time
+        self.did_start = False
 
 kv = Builder.load_file("../Operator_KHL/Screens/thirdwindow.kv")

@@ -81,13 +81,14 @@
                             size_hint: 1,.25
                         Label:
                             id: time_widget
-                            text: "20:00"
+                            text: root.period_time
                             font_name: "Fonts/nhl-nashville.ttf"
                             color: (0, 0, 0)
                             font_size: 40
                             font_size: self.width/7
                             size_hint: 1,.1
                         Label:
+                            id: period
                             text: "1'st period"
                             font_size: self.width/10
                             color: (0, 0, 0) 
@@ -161,9 +162,7 @@
                         size_hint: .5, 1
                         background_color: 0/255, 255/255, 0/255, 1
                         on_press: 
-                            root.change_name_pause()
                             root.pause()
-                            root.start_time()
                     Button:
                         text: "TIMEOUT"
                         size_hint: .25, 1
