@@ -1,3 +1,5 @@
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+
 <ThirdWindow>:
     name: "third"
     id: third_scr
@@ -54,7 +56,9 @@
                         size_hint: 1, .1
                         font_name: "Fonts/nhl-nashville.ttf"
                         font_size: self.width/15
-                        on_press: app.root.current = "second"
+                        on_press: 
+                            root.manager.transition = SlideTransition(direction = "right")
+                            app.root.current = "second"
                 BoxLayout:
                     size_hint: .1, 1
         BoxLayout:

@@ -1,3 +1,5 @@
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+
 <SecondWindow>:
     id: second_scr
     name: "second"
@@ -105,6 +107,7 @@
                 background_color: 1, 1, 1, 0
                 size_hint: 1, 0.091
                 on_press: 
+                    root.manager.transition = SlideTransition()
                     root.on_button_start()
                     app.root.current = "third"
 

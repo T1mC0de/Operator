@@ -1,3 +1,5 @@
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+
 <FirstWindow>:
     name: "first"
     canvas.before:
@@ -33,7 +35,9 @@
                         size_hint: .1, .1
                         pos_hint: {'y':.35, 'x': .5}
                         background_color: 1, 1, 1, 0
-                        on_release: app.root.current = "second"
+                        on_press: 
+                            root.manager.transition = SlideTransition()
+                            app.root.current = "second"
                 BoxLayout:
                     size_hint: 0.3, 1
                 
