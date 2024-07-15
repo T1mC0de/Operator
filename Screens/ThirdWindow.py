@@ -7,22 +7,27 @@ from Team import Teams
 class Turn_Sound:
     def __init__(self) -> None:
         self.siren = SoundLoader.load("../Operator_KHL/Sound/sirena_nhl.mp3")
+        self.end_period = SoundLoader.load("../Operator_KHL/Sound/period.mp3")
 
     def activate_sirena_sound(self):
         if self.siren:
             self.siren.volume = 0.5
             self.siren.play()
 
+    def activate_end_period_sound(self):
+        if self.end_period:
+            self.end_period.volume = 0.5
+            self.end_period.play()
+
 
 class ThirdWindow(Screen):
     def __init__(self, **kw):
         super().__init__(**kw)
-        self.did_start = False
         self.are_on_pause = 1
         self.disable_goal_button = 1
         self.sound = Turn_Sound()
         self.periods = 1
-        self.period_time = "00:05"
+        self.period_time = "00:55"
 
     def print_time(self):
         self.time_min = str(self.time_min)
@@ -46,9 +51,12 @@ class ThirdWindow(Screen):
         else:
             self.pause()
             self.change_period()
+            self.sound.activate_end_period_sound()
             self.ev.cancel()
     
     def pause(self):
+        if self.ids.time_widget.text == self.period_time:
+            self.sound.activate_end_period_sound()
         self.disable_goal_button = (self.disable_goal_button + 1) % 2
         self.ids.goal_left_team.disabled = self.disable_goal_button
         self.ids.goal_right_team.disabled = self.disable_goal_button
