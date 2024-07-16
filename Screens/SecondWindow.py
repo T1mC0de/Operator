@@ -6,6 +6,12 @@ from Team import Teams
 kv = Builder.load_file("../Operator_KHL/Screens/secondwindow.kv")
 
 class SecondWindow(Screen):
+    def on_checkbox_active(checkbox, instance, value):
+        if value:
+            print('The checkbox', checkbox, 'is active')
+        else:
+            print('The checkbox', checkbox, 'is not active')
+
     def on_button_left_choosing_left_team(self): 
         Teams.index_first_team = abs(Teams.index_first_team - 1)
         Teams.index_first_team %= len(Teams.Teams_list)
