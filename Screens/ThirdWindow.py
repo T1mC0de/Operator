@@ -3,11 +3,23 @@ from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
 from Team import Teams
+from random import randint
 
 class Turn_Sound:
     def __init__(self) -> None:
         self.siren = SoundLoader.load("../Operator_KHL/Sound/sirena_nhl.mp3")
         self.end_period = SoundLoader.load("../Operator_KHL/Sound/period.mp3")
+        self.music_list = [
+            SoundLoader.load("../Operator_KHL/Music/Linkin Park - Breaking the Habit.mp3"),
+            SoundLoader.load("../Operator_KHL/Music/Linkin Park - In the End.mp3"),
+            SoundLoader.load("../Operator_KHL/Music/Linkin Park - New Divide.mp3"),
+            SoundLoader.load("../Operator_KHL/Music/Linkin Park - Numb.mp3"),
+            SoundLoader.load("../Operator_KHL/Music/Linkin Park - Somewhere I Belong.mp3"),
+            SoundLoader.load("../Operator_KHL/Music/Linkin Park - What I&#39;ve Done.mp3")
+        ]
+        self.last_track = -1
+        self.next_track = 0
+
 
     def activate_sirena_sound(self):
         if self.siren:
@@ -19,6 +31,18 @@ class Turn_Sound:
             self.end_period.volume = 0.5
             self.end_period.play()
 
+    def activate_random_music_in_pause(self):
+        if self.music_list[self.last_track].state == 'stop':
+            self.music_list[self.next_track].play()
+            self.music_ev = Clock.schedule_once(lambda dt: self.activate_random_music_in_pause(), self.music_list[self.next_track].length+0.5)
+            self.last_track = self.next_track
+            self.next_track = randint(0, len(self.music_list)-1)
+            if self.next_track == self.last_track:
+                self.next_track = (self.next_track + 1) % len(self.music_list)
+        else:
+            self.music_ev.cancel()
+            self.music_list[self.last_track].stop()
+            
 
 class ThirdWindow(Screen):
     def __init__(self, **kw):
@@ -57,6 +81,10 @@ class ThirdWindow(Screen):
     def pause(self):
         if self.ids.time_widget.text == self.period_time:
             self.sound.activate_end_period_sound()
+        if self.sound.last_track == -1:
+            self.sound.last_track = 0
+        else:    
+            self.sound.activate_random_music_in_pause()
         self.disable_goal_button = (self.disable_goal_button + 1) % 2
         self.ids.goal_left_team.disabled = self.disable_goal_button
         self.ids.goal_right_team.disabled = self.disable_goal_button
