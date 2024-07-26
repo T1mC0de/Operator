@@ -2,6 +2,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.clock import Clock
 from kivy.core.audio import SoundLoader
+from kivy.core.window import Window
 from Team import Teams
 from random import randint
 
@@ -31,18 +32,6 @@ class Turn_Sound:
             self.end_period.volume = 0.5
             self.end_period.play()
 
-    def activate_random_music_in_pause(self):
-        if self.music_list[self.last_track].state == 'stop':
-            self.music_list[self.next_track].play()
-            self.music_ev = Clock.schedule_once(lambda dt: self.activate_random_music_in_pause(), self.music_list[self.next_track].length+0.5)
-            self.last_track = self.next_track
-            self.next_track = randint(0, len(self.music_list)-1)
-            if self.next_track == self.last_track:
-                self.next_track = (self.next_track + 1) % len(self.music_list)
-        else:
-            self.music_ev.cancel()
-            self.music_list[self.last_track].stop()
-            
 
 class ThirdWindow(Screen):
     def __init__(self, **kw):
@@ -52,7 +41,9 @@ class ThirdWindow(Screen):
         self.sound = Turn_Sound()
         self.periods = 1
         self.period_time = "00:55"
-
+        self.music_var = 0
+        Window.bind(on_key_down=self.binds)
+        
     def print_time(self):
         self.time_min = str(self.time_min)
         self.time_sec = str(self.time_sec)
@@ -81,10 +72,6 @@ class ThirdWindow(Screen):
     def pause(self):
         if self.ids.time_widget.text == self.period_time:
             self.sound.activate_end_period_sound()
-        if self.sound.last_track == -1:
-            self.sound.last_track = 0
-        else:    
-            self.sound.activate_random_music_in_pause()
         self.disable_goal_button = (self.disable_goal_button + 1) % 2
         self.ids.goal_left_team.disabled = self.disable_goal_button
         self.ids.goal_right_team.disabled = self.disable_goal_button
@@ -117,6 +104,19 @@ class ThirdWindow(Screen):
             self.ids.period.text = "3'd period"
         self.periods += 1
         self.ids.time_widget.text = self.period_time
-        self.did_start = False
+        self.did_start = False  
+    
+    def binds(self, *args):
+        key = list(args)[2]
+        print(key)
+        if key == 229:
+            self.goal_second_team()
+            self.pause()
+        if key == 225:
+            self.goal_first_team()
+            self.pause()
+        if key == 44:
+            self.pause()
+    
 
 kv = Builder.load_file("../Operator_KHL/Screens/thirdwindow.kv")

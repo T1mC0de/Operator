@@ -4,7 +4,6 @@ from kivy.uix.screenmanager import ScreenManager
 from Screens import FirstWindow, SecondWindow, ThirdWindow
 from kivy.config import Config
 from kivy.clock import Clock
-from kivy.core.window import Window
 from kivy.uix.screenmanager import Screen
 
 # multitouch disable
