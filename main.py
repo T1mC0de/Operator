@@ -5,12 +5,12 @@ from Screens import FirstWindow, SecondWindow, ThirdWindow
 from kivy.config import Config
 from kivy.clock import Clock
 from kivy.uix.screenmanager import Screen
+from kivy.core.window import Window
 
 # multitouch disable
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
 #Стандартный размер окна при открытии приложения(около 16:9)
-from kivy.core.window import Window
 Window.size = (1300, 768)
 
 #Ограничение минимального размера окна 800 на 500
@@ -27,7 +27,7 @@ Window.clearcolor = (209/255, 209/255, 209/255, 1)
 #Удаляет базовый курсор, он работает, но его не видно
 Window.show_cursor = False
 
-#Курсор и его красивый класс
+
 class WindowManager(ScreenManager):
     def __init__(self, **kwargs):
         super(WindowManager, self).__init__(**kwargs)
@@ -49,7 +49,6 @@ class Operator(App):
     def build(self):
         self.icon = "../Operator_KHL/Images/logo_khl.ico"
         self.title = "Операторская"
-        #Window.bind(mouse_pos=self.on_motion)
         return kv
 
    # def on_motion(self, mouse_pos):

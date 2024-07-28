@@ -1,9 +1,12 @@
 from kivy.uix.tabbedpanel import StripLayout
 from kivy.uix.screenmanager import Screen
+from kivy.core.audio import SoundLoader
 from kivy.lang import Builder
 from Team import Teams
 
 kv = Builder.load_file("../Operator_KHL/Screens/secondwindow.kv")
+
+fans = SoundLoader.load("../Operator_KHL/Sound/visit1.mp3")
 
 class SecondWindow(Screen):
     def on_checkbox_active(checkbox, instance, value):
@@ -46,3 +49,11 @@ class SecondWindow(Screen):
         #self.manager.get_screen('third').ids.first_team.text = Teams.Teams_list[Teams.index_first_team].name
         self.manager.get_screen('third').ids.goal_left_team.disabled = 1
         self.manager.get_screen('third').ids.goal_right_team.disabled = 1
+        self.manager.get_screen('third').ids.timeout_left.disabled = 0
+        self.manager.get_screen('third').ids.timeout_right.disabled = 0
+        if fans.state == "stop":
+            fans.play()
+        
+
+
+
